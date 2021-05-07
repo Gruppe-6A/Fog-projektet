@@ -1,5 +1,6 @@
 package business.persistence;
 
+import business.entities.Roles;
 import business.exceptions.UserException;
 import business.entities.User;
 
@@ -18,13 +19,13 @@ public class UserMapper
     {
         try (Connection connection = database.connect())
         {
-            String sql = "INSERT INTO users (email, password, role) VALUES (?, ?, ?)";
+            String sql = "INSERT INTO users (email, password, role_id) VALUES (?, ?, ?)";
 
             try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS))
             {
                 ps.setString(1, user.getEmail());
                 ps.setString(2, user.getPassword());
-                ps.setString(3, user.getRole());
+                ps.setInt(3, 0);
                 ps.executeUpdate();
                 ResultSet ids = ps.getGeneratedKeys();
                 ids.next();
@@ -46,7 +47,7 @@ public class UserMapper
     {
         try (Connection connection = database.connect())
         {
-            String sql = "SELECT id, role FROM users WHERE email=? AND password=?";
+            String sql = "SELECT users.id, roles.role FROM users JOIN roles ON users.role_id = roles.id WHERE users.email =? AND users.password =?;";
 
             try (PreparedStatement ps = connection.prepareStatement(sql))
             {
@@ -75,5 +76,7 @@ public class UserMapper
             throw new UserException("Connection to database could not be established");
         }
     }
+
+
 
 }

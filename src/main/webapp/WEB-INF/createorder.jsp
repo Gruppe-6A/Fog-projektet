@@ -5,7 +5,7 @@
 <t:genericpage>
 
     <jsp:attribute name="header">
-         Home
+         Create order
     </jsp:attribute>
 
     <jsp:attribute name="footer">
@@ -15,15 +15,18 @@
     <jsp:body>
 
         <div>
-            <h2>Velkommen til Fog</h2>
+            <h2>Her kan du vælge størrelsen på din Carport</h2>
 
             <div style="margin-top: 3em;margin-bottom: 3em;">
-               Dunkin Donuts
             </div>
 
-            <div>
-
-            </div>
+            <form>
+                <div class="form-group">
+                    <label for="replyNumber">Længde</label>
+                    <input type="number" id="replyNumber" min="0" data-bind="value:replyNumber" />
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
 
             <c:if test="${sessionScope.role == 'employee' }">
                 <p style="font-size: larger">This is what you can do,
@@ -36,8 +39,6 @@
                     are logged in as a customer</p>
                 <p><a href="fc/customerpage">Customer Page</a>
             </c:if>
-
-            <p><a href="fc/createorder">Create order Page</a> </p>
 
         </div>
 

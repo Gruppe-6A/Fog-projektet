@@ -15,7 +15,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="bmi" options="-endorseddirs C:\Users\Mikke\IdeaProjects\Fog-projektet\target/endorsed" />
+      <module name="bmi" options="-endorseddirs C:\Users\abdi0747.NEXT\IdeaProjects\Fog-projektet\target/endorsed" />
     </option>
   </component>
 </project>
