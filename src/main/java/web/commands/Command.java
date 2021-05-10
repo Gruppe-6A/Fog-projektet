@@ -7,7 +7,7 @@ import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public abstract class Command
+public abstract class   Command
 {
     //Return a token string from the execute method to make a client side redirect,
     // instead of a server side (forward) redirect

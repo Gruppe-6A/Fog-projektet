@@ -18,7 +18,7 @@
             <h2>Velkommen til Fog</h2>
 
             <div style="margin-top: 3em;margin-bottom: 3em;">
-               Dunkin Donuts
+               Her kan du bygge din egen carport
             </div>
 
             <div>
