@@ -5,7 +5,7 @@
 <t:genericpage>
 
     <jsp:attribute name="header">
-         Create order
+         Show order
     </jsp:attribute>
 
     <jsp:attribute name="footer">
