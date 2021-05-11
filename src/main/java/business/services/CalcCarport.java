@@ -20,9 +20,16 @@ public class CalcCarport {
 
     public List<Item> itemList() throws UserException {
         Result posts = new CalcPosts(length, width).calculate();
-        int materials_id = 1;
+        list.add(new Item(posts.getMaterial_id(), posts.getAmount(), "Stolper nedgraves 90 cm. i jord", new PriceCalculator(length, posts.getAmount(), posts.getMaterial_id()).calcPrice(), posts.getLength()));
 
-        list.add(new Item(materials_id, posts.getAmount(), "Stolper nedgraves 90 cm. i jord", new PriceCalculator(length, posts.getAmount(), materials_id).calcPrice(), posts.getLength()));
+        Result rem = new CalcRem(length, width).calculate();
+        list.add(new Item(rem.getMaterial_id(), rem.getAmount(), "Remme i sider, sadles ned i stolper", new PriceCalculator(length, rem.getAmount(), rem.getMaterial_id()).calcPrice(), rem.getLength()));
+
+        Result rafters = new CalcRafters(length, width).calculate();
+        list.add(new Item(rafters.getMaterial_id(), rafters.getAmount(), "Spær, monteres på rem", new PriceCalculator(length, rafters.getAmount(), rafters.getMaterial_id()).calcPrice(), rafters.getLength()));
+
+        Result rooftile = new CalcRooftiles(length, width).calculate();
+        list.add(new Item(rooftile.getMaterial_id(), rooftile.getAmount(), "tagplader monteres på spær", new PriceCalculator(length, rooftile.getAmount(), rooftile.getMaterial_id()).calcPrice(), rooftile.getLength()));
 
         return list;
     }

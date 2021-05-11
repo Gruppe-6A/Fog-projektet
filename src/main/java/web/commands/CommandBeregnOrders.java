@@ -1,9 +1,13 @@
 package web.commands;
 
+import business.entities.Item;
+import business.services.CalcCarport;
 import business.services.OrderFacade;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 
 public class CommandBeregnOrders extends CommandProtectedPage
 {
@@ -21,10 +25,12 @@ public class CommandBeregnOrders extends CommandProtectedPage
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response)
     {
+        HttpSession session = request.getSession();
+        request.getParameter("");
+        //ArrayList<Item> items = new CalcCarport(length, width).itemList();
 
-
-       // orderFacade.insertIntoOrder();
-        return pageToShow;
+       //orderFacade.insertIntoOrder();
+       return pageToShow;
     }
 
 

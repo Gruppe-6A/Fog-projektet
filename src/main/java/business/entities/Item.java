@@ -14,4 +14,24 @@ public class Item {
         this.price = price;
         this.length = length;
     }
+
+    public int getMaterials_id() {
+        return materials_id;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public int getLength() {
+        return length;
+    }
 }

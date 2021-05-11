@@ -37,7 +37,7 @@
                 <p><a href="fc/customerpage">Customer Page</a>
             </c:if>
 
-            <p><a href="fc/createorder">Create order Page</a> </p>
+            <p><a href="${pageContext.request.contextPath}/fc/createorder">Create order Page</a> </p>
 
         </div>
 

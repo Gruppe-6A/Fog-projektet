@@ -15,8 +15,6 @@
     <jsp:body>
 
         <div>
-
-
             <c:if test="${sessionScope.role == 'employee' }">
                 <p style="font-size: larger">This is what you can do,
                     since your are logged in as an employee</p>
@@ -30,26 +28,32 @@
                 <div style="margin-top: 3em;margin-bottom: 3em;">
                 </div>
 
-                <form>
-                    <div class="form-group">
-                        <label for="replyNumberL">Længde</label>
-                        <input type="number" id="replyNumberL" min="0" data-bind="value:replyNumber" />
-                        <label for="replyNumberB">Bredde</label>
-                        <input type="number" id="replyNumberB" min="0" data-bind="value:replyNumber" />
-                        <p>Ønsker du at have et skur:</p>
-                        <input type="radio" id="ja" name="skur" value="ja">
-                        <label for="ja">Ja</label><br>
-                        <input type="radio" id="nej" name="skur" value="nej">
-                        <label for="nej">Nej</label><br>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Send forespørgsel</button>
-                </form>
                 <p style="font-size: larger">This is what you can do, since your
                     are logged in as a customer</p>
-                <p><a href="fc/customerpage">Customer Page</a>
+                <p><a href="customerpage">Customer Page</a>
             </c:if>
-
         </div>
+
+        <form action="${pageContext.request.contextPath}/fc/price" method="post" role="form" class="form-horizontal">
+            <div class="container-fluid">
+                <div class="form-group">
+                    <div class="row">
+                        <label class="col" for="replyNumberL">Længde i cm:</label>
+                    </div>
+                    <div class="row">
+                        <input class="col-2 mb-2" type="number" id="replyNumberL" min="0" data-bind="value:replyNumber" />
+                    </div>
+                    </br>
+                    <div class="row">
+                        <label for="replyNumberB">Bredde i cm:</label>
+                    </div>
+                    <div class="row">
+                        <input class="col-2 mb-2"type="number" id="replyNumberB" min="0" data-bind="value:replyNumber" />
+                    </div>
+                </div>
+                <button class="btn btn-primary" type="submit" >Udregn pris</button>
+            </div>
+        </form>
 
     </jsp:body>
 </t:genericpage>

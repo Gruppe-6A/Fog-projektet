@@ -5,6 +5,7 @@ import business.entities.Result;
 public class CalcPosts {
     private int length;
     private int width;
+    private int materials_id = 1;
 
     public CalcPosts(int length, int width) {
         this.length = length;
@@ -15,6 +16,6 @@ public class CalcPosts {
         int post_length = 300;
         int post_count = (int) Math.ceil((float)length/310)*2;
 
-        return new Result(post_count, post_length);
+        return new Result(post_count, post_length, materials_id);
     }
 }

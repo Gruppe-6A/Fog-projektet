@@ -15,7 +15,7 @@ public class OrderMapper
         this.database = database;
     }
 
-    public void insertIntoOrder(Order order, int userID) throws UserException
+    public int insertIntoOrder(Order order, int userID) throws UserException
     {
         try (Connection connection = database.connect())
         {
@@ -33,7 +33,9 @@ public class OrderMapper
 
 
                 ps.execute();
-
+                ResultSet res = ps.getResultSet();
+                res.next();
+                return res.getInt(1);
             }
             catch (SQLException ex)
             {
