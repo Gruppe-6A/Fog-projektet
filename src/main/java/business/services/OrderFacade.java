@@ -16,9 +16,9 @@ public class OrderFacade
         orderMapper = new OrderMapper(database);
     }
 
-    public void insertIntoOrder(Order order, int userID) throws UserException
+    public int insertIntoOrder(Order order, int userID) throws UserException
     {
-        orderMapper.insertIntoOrder(order, userID);
+      return  orderMapper.insertIntoOrder(order, userID);
 
     }
 

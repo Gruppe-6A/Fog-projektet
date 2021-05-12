@@ -27,7 +27,7 @@ public class CommandBeregnOrders extends CommandProtectedPage
     {
         HttpSession session = request.getSession();
         request.getParameter("");
-        //ArrayList<Item> items = new CalcCarport(length, width).itemList();
+
 
        //orderFacade.insertIntoOrder();
        return pageToShow;

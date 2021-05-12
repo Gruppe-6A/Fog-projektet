@@ -15,28 +15,10 @@
     <jsp:body>
 
         <div>
+            Her er længden: ${requestScope.length}  <br>
+            Her er bredden: ${requestScope.width}
 
 
-            <c:if test="${sessionScope.role == 'employee' }">
-                <p style="font-size: larger">This is what you can do,
-                    since your are logged in as an employee</p>
-                 <p><a href="fc/employeepage">Employee Page</a>
-             </c:if>
-
-             <c:if test="${sessionScope.role == 'customer' }">
-                <h2>Du er nu på vores price page :)</h2>
-                <br/>
-                <p>Prisen på din carport er:</p>
-                <div style="margin-top: 3em;margin-bottom: 3em;">
-                </div>
-
-                <form>
-                    <button type="button" class="btn btn-success">Køb nu</button>
-                </form>
-                <p style="font-size: larger">This is what you can do, since your
-                    are logged in as a customer</p>
-                <p><a href="fc/customerpage">Customer Page</a>
-            </c:if>
 
         </div>
 

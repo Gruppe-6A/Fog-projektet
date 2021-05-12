@@ -33,9 +33,10 @@ public class OrderMapper
 
 
                 ps.execute();
-                ResultSet res = ps.getResultSet();
+                ResultSet res = ps.getGeneratedKeys();
                 res.next();
                 return res.getInt(1);
+
             }
             catch (SQLException ex)
             {

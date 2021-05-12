@@ -38,17 +38,23 @@
             <div class="container-fluid">
                 <div class="form-group">
                     <div class="row">
-                        <label class="col" for="replyNumberL">Længde i cm:</label>
+                        <label class="col" for="height">højde i cm:</label>
                     </div>
                     <div class="row">
-                        <input class="col-2 mb-2" type="number" id="replyNumberL" min="0" data-bind="value:replyNumber" />
+                        <input name="height" class="col-2 mb-2" type="number" id="height" min="0" data-bind="value:height" />
+                    </div>
+                    <div class="row">
+                        <label class="col" for="length">Længde i cm:</label>
+                    </div>
+                    <div class="row">
+                        <input name="length" class="col-2 mb-2" type="number" id="length" min="0" data-bind="value:length" />
                     </div>
                     </br>
                     <div class="row">
-                        <label for="replyNumberB">Bredde i cm:</label>
+                        <label for="width">Bredde i cm:</label>
                     </div>
                     <div class="row">
-                        <input class="col-2 mb-2"type="number" id="replyNumberB" min="0" data-bind="value:replyNumber" />
+                        <input name="width" class="col-2 mb-2"type="number" id="width" min="0" data-bind="value:width" />
                     </div>
                 </div>
                 <button class="btn btn-primary" type="submit" >Udregn pris</button>
