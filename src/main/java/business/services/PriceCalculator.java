@@ -29,7 +29,11 @@ public class PriceCalculator {
                 String unit = resultSet.getString(1);
                 int price_per_unit = resultSet.getInt(2);
                 if (unit.equals("meter")) {
-                    price = (int) ((float) length / 100) * price_per_unit;
+                    price = (int) ((float) length / 100) * price_per_unit * amount;
+                }
+                else if (unit.equals("stk"))
+                {
+                    price = price_per_unit * amount;
                 }
 
                 return price;

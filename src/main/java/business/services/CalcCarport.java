@@ -30,7 +30,7 @@ public class CalcCarport {
 
         Result rooftile = new CalcRooftiles(length, width).calculate();
         list.add(new Item(rooftile.getMaterial_id(), rooftile.getAmount(), "tagplader monteres på spær", new PriceCalculator(length, rooftile.getAmount(), rooftile.getMaterial_id()).calcPrice(), rooftile.getLength()));
-
+        System.out.println(rooftile.getAmount());
         return list;
     }
 

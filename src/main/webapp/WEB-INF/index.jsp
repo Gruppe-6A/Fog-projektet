@@ -21,24 +21,19 @@
                Her kan du bygge din egen carport
             </div>
 
-            <div>
-
-            </div>
-
             <c:if test="${sessionScope.role == 'employee' }">
                 <p style="font-size: larger">This is what you can do,
                     since your are logged in as an employee</p>
                  <p><a href="fc/employeepage">Employee Page</a>
              </c:if>
 
-             <c:if test="${sessionScope.role == 'customer' }">
-                <p style="font-size: larger">This is what you can do, since your
-                    are logged in as a customer</p>
-                <p><a href="fc/customerpage">Customer Page</a>
-            </c:if>
-
-            <p><a href="${pageContext.request.contextPath}/fc/createorder">Create order Page</a> </p>
-
+            <form action="${pageContext.request.contextPath}/fc/createorder" method="post" role="form">
+            <div class="row">
+                <div class="col-sm-4">
+                    <button class="btn btn-primary" type="submit">Skræddersy din egen carport</button>
+                </div>
+            </div>
+        </form>
         </div>
 
     </jsp:body>

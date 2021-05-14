@@ -16,10 +16,9 @@
 
         <div>
             Her er længden: ${requestScope.length}  <br>
-            Her er bredden: ${requestScope.width}
-
-
-
+            Her er bredden: ${requestScope.width} <br>
+            Prisen på din carport er: ${requestScope.price} kr. <br>
+            <button type="button" class="btn btn-outline-success">Køb nu</button>
         </div>
 
     </jsp:body>

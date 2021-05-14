@@ -24,26 +24,21 @@ public class ThePriceisRightCommand extends CommandProtectedPage
     public ThePriceisRightCommand(String pageToShow, String role)
     {
         super(pageToShow, role);
-
-
     }
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response)
-    {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws UserException {
 
         HttpSession session = request.getSession();
 
         User user = (User) session.getAttribute("user");
         int id = user.getId();
-        System.out.println(id);
         int length = Integer.parseInt(request.getParameter("length"));
         int width = Integer.parseInt(request.getParameter("width"));
-        int height = Integer.parseInt(request.getParameter("height"));
+        int height = 225;
         request.setAttribute("length", length);
         request.setAttribute("height", height);
         request.setAttribute("width", width);
-
 
         try {
             List<Item> items = new CalcCarport(length, width).itemList();
@@ -53,13 +48,13 @@ public class ThePriceisRightCommand extends CommandProtectedPage
             }
                 Order order = new Order(id, length, height, width, price);
             int orderid = orderfacade.insertIntoOrder(order, id);
+            request.setAttribute("price", orderfacade.getPrice(orderid));
+            itemMapper.insertIntoOrdered_materials(items, orderid);
         } catch (UserException e) {
             e.printStackTrace();
         }
-
         return pageToShow;
     }
-
     public String getRole()
     {
         return role;

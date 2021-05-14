@@ -16,6 +16,6 @@ public class CalcRooftiles {
         int rooftile_length = length;
         int rooftile_count = (int) Math.ceil((float)width/100);
 
-        return new Result(rooftile_count, rooftile_length, materials_id);
+        return new Result(rooftile_length, rooftile_count, materials_id);
     }
 }

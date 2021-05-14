@@ -16,6 +16,6 @@ public class CalcPosts {
         int post_length = 300;
         int post_count = (int) Math.ceil((float)length/310)*2;
 
-        return new Result(post_count, post_length, materials_id);
+        return new Result(post_length, post_count, materials_id);
     }
 }

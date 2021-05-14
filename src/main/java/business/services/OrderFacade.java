@@ -22,4 +22,9 @@ public class OrderFacade
 
     }
 
+    public int getPrice(int id) throws UserException
+    {
+        return orderMapper.getPrice(id);
+    }
+
 }

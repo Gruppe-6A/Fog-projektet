@@ -13,6 +13,6 @@ public class CalcRem {
     }
 
     public Result calculate(){
-        return new Result(2, length, materials_id);
+        return new Result(length,2, materials_id);
     }
 }
