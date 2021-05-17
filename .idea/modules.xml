@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/bmi.iml" filepath="$PROJECT_DIR$/bmi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fog-projektet.iml" filepath="$PROJECT_DIR$/fog-projektet.iml" />
     </modules>
   </component>
 </project>

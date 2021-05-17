@@ -20,6 +20,11 @@
             Prisen på din carport er: ${requestScope.price} kr. <br>
             <button type="button" class="btn btn-outline-success">Køb nu</button>
         </div>
+        <div>
+            <h2>Tegning</h2>
+            <p>Her indsættes en tegning:</p>
+                ${requestScope.svgdrawing}
+        </div>
 
     </jsp:body>
 </t:genericpage>
