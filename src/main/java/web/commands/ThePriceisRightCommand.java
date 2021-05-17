@@ -46,7 +46,7 @@ public class ThePriceisRightCommand extends CommandProtectedPage
             for(Item item:items){
                 price+=item.getPrice();
             }
-                Order order = new Order(id, length, height, width, price);
+                Order order = new Order(id, length, height, width, price, "forespørgelse");
             int orderid = orderfacade.insertIntoOrder(order, id);
             request.setAttribute("price", orderfacade.getPrice(orderid));
             itemMapper.insertIntoOrdered_materials(items, orderid);

@@ -20,6 +20,7 @@
         <setting name="validation-enabled" value="true" />
         <datasource-mapping>
           <factory-entry name="bmi" />
+          <factory-entry name="fog-projektet" />
         </datasource-mapping>
         <naming-strategy-map />
       </configuration>

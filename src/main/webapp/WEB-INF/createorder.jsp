@@ -55,7 +55,7 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-4">
-                        <button class="btn btn-primary" type="submit">Udregn pris</button>
+                        <button class="btn btn-primary" type="submit">Send forespørgsel</button>
                     </div>
                 </div>
             </form>

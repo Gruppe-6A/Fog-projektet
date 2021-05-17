@@ -7,6 +7,8 @@ import business.persistence.Database;
 import business.persistence.OrderMapper;
 import business.persistence.UserMapper;
 
+import java.util.List;
+
 public class OrderFacade
 {
     OrderMapper orderMapper;
@@ -22,9 +24,18 @@ public class OrderFacade
 
     }
 
+    public List<Order> getOrders() throws UserException
+    {
+        return orderMapper.getOrders();
+    }
+
     public int getPrice(int id) throws UserException
     {
         return orderMapper.getPrice(id);
+    }
+
+    public void changeStatus(String status, int orderId) throws  UserException{
+        orderMapper.changeStatus(status, orderId);
     }
 
 }

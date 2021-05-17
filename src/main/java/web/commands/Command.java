@@ -31,6 +31,7 @@ public abstract class   Command
         commands.put("createorder", new CommandUnprotectedPage("createorder"));
         //commands.put("price", new ThePriceisRightCommand("price", "customer"));
         commands.put("price", new ShowSVGCommand("price"));
+        commands.put("Godkender", new GodkenderCommand("Godkender", "employee"));
     }
 
     public static Command fromPath(

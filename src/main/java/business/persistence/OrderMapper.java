@@ -5,6 +5,8 @@ import business.entities.User;
 import business.exceptions.UserException;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class OrderMapper
 {
@@ -71,5 +73,60 @@ public class OrderMapper
             throw new UserException(ex.getMessage());
         }
     }
+
+    public List<Order> getOrders() throws UserException {
+        List<Order> orders = new ArrayList<Order>();
+        try (Connection connection = database.connect())
+        {
+            String sql = "SELECT * FROM fog.order";
+
+            try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS))
+            {
+                ResultSet res = ps.executeQuery();
+                while (res.next()){
+                    int order_id = res.getInt("id");
+                    int user_id = res.getInt("users_id");
+                    int length = res.getInt("length");
+                    int height = res.getInt("height");
+                    int width = res.getInt("width");
+                    int price = res.getInt("price");
+                    String status = res.getString("status");
+                    orders.add(new Order(order_id, user_id, length, height, width, price, status));
+                }
+                return orders;
+
+            }
+            catch (SQLException ex)
+            {
+                throw new UserException(ex.getMessage());
+            }
+        }
+        catch (SQLException | UserException ex)
+        {
+            throw new UserException(ex.getMessage());
+        }
+    }
+
+    public void changeStatus(String status, int orderId) throws UserException {
+        try (Connection connection = database.connect())
+        {
+            String sql = "UPDATE `fog`.`order` SET status = ? where id = ?";
+
+            try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
+                ps.setString(1, status);
+                ps.setInt(2, orderId);
+
+            }
+            catch (SQLException ex)
+            {
+                throw new UserException(ex.getMessage());
+            }
+        }
+        catch (SQLException | UserException ex)
+        {
+            throw new UserException(ex.getMessage());
+        }
+    }
+
 
 }

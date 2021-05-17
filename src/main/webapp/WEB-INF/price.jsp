@@ -17,13 +17,8 @@
         <div>
             Her er længden: ${requestScope.length}  <br>
             Her er bredden: ${requestScope.width} <br>
-            Prisen på din carport er: ${requestScope.price} kr. <br>
-            <button type="button" class="btn btn-outline-success">Køb nu</button>
-        </div>
-        <div>
-            <h2>Tegning</h2>
-            <p>Her indsættes en tegning:</p>
-                ${requestScope.svgdrawing}
+
+            Tak for din forespørgsel. En ansat vil kigge på den så hurtigt som muligt.
         </div>
 
     </jsp:body>
