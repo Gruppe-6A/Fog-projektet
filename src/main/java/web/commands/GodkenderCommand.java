@@ -27,17 +27,20 @@ public class GodkenderCommand extends CommandProtectedPage
     public String execute(HttpServletRequest request, HttpServletResponse response) throws UserException {
 
         HttpSession session = request.getSession();
-        List<Order> orderList = orderfacade.getOrders();
-        request.setAttribute("orderList", orderList);
-
         if (request.getParameter("orderid") != null){
             if (request.getParameter("godkendt").equals("true")){
                 orderfacade.changeStatus("godkendt", Integer.parseInt(request.getParameter("orderid")));
             }
             else if (request.getParameter("godkendt").equals("false")){
-                //fjern ordre
+                itemMapper.removeFromOrdered_materials(Integer.parseInt(request.getParameter("orderid")));
+                orderfacade.removeOrder(Integer.parseInt(request.getParameter("orderid")));
             }
         }
+
+        List<Order> orderList = orderfacade.getOrders();
+        request.setAttribute("orderList", orderList);
+
+
 
         return pageToShow;
     }

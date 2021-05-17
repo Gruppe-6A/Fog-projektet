@@ -22,8 +22,8 @@ public class OrderMapper
         try (Connection connection = database.connect())
         {
             String sql = "INSERT INTO `fog`.`order`"+
-                    "(users_id,length,height, width, price, date)"+
-                    "VALUES (?,?,?,?,?,CURRENT_TIMESTAMP());";
+                    "(users_id,length,height, width, price, date, status)"+
+                    "VALUES (?,?,?,?,?,CURRENT_TIMESTAMP(), ?);";
 
             try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS))
             {
@@ -32,6 +32,7 @@ public class OrderMapper
                 ps.setInt(3, order.getHeight());
                 ps.setInt(4, order.getWidth());
                 ps.setInt(5, order.getPrice());
+                ps.setString(6, order.getStatus());
 
                 ps.execute();
                 ResultSet res = ps.getGeneratedKeys();
@@ -110,12 +111,32 @@ public class OrderMapper
     public void changeStatus(String status, int orderId) throws UserException {
         try (Connection connection = database.connect())
         {
-            String sql = "UPDATE `fog`.`order` SET status = ? where id = ?";
+            String sql = "UPDATE `fog`.`order` SET `order`.`status` = ? where id = ?";
 
             try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
                 ps.setString(1, status);
                 ps.setInt(2, orderId);
+                ps.executeUpdate();
+            }
+            catch (SQLException ex)
+            {
+                throw new UserException(ex.getMessage());
+            }
+        }
+        catch (SQLException | UserException ex)
+        {
+            throw new UserException(ex.getMessage());
+        }
+    }
 
+    public void removeOrder(int orderId) throws UserException {
+        try (Connection connection = database.connect())
+        {
+            String sql = "DELETE FROM `fog`.`order` where `order`.`id` = ?";
+
+            try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
+                ps.setInt(1, orderId);
+                ps.execute();
             }
             catch (SQLException ex)
             {

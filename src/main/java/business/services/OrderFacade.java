@@ -38,4 +38,8 @@ public class OrderFacade
         orderMapper.changeStatus(status, orderId);
     }
 
+    public void removeOrder(int orderId) throws UserException{
+        orderMapper.removeOrder(orderId);
+    }
+
 }

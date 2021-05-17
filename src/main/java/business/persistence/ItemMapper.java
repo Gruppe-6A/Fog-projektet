@@ -46,4 +46,26 @@ public class ItemMapper {
             throw new UserException(ex.getMessage());
         }
     }
+
+    public void removeFromOrdered_materials(int order_id) throws UserException
+    {
+        try (Connection connection = database.connect())
+        {
+            String sql = "DELETE from `fog`.`ordered_materials` where `fog`.`ordered_materials`.`order_id` = ?;";
+
+            try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS))
+            {
+                ps.setInt(1, order_id);
+                ps.execute();
+            }
+            catch (SQLException ex)
+            {
+                throw new UserException(ex.getMessage());
+            }
+        }
+        catch (SQLException ex)
+        {
+            throw new UserException(ex.getMessage());
+        }
+    }
 }

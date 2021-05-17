@@ -18,6 +18,7 @@
         <table>
             <thead><th>Id  </th><th>Kunde Id  </th><th>Længde  </th><th>Bredde  </th><th>godkend ordre  </th><th>afvis ordre</th></thead>
         <c:forEach var="orderList" items="${requestScope.orderList}">
+            <c:if test="${orderList.status == 'forespørgelse' }">
             <tr>
                 <td>${orderList.order_id}</td>
                 <td>${orderList.users_id}</td>
@@ -49,6 +50,7 @@
                 </form>
                 </td>
             </tr>
+            </c:if>
         </c:forEach>
 
         </table>
