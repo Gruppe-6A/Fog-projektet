@@ -45,7 +45,7 @@
         </c:if>
 
         <a class="p-2 text-white" href="#">Profile</a>
-        <a class="p-2 text-white" href="#">About</a>
+        <a class="p-2 text-white" href="${pageContext.request.contextPath}/fc/about">About</a>
     </nav>
 
     <div>

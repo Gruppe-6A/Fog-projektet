@@ -40,9 +40,18 @@
         </c:if>
 
         <c:if test="${requestScope.status == 'betalt' }">
-            <h2>Her er din stykliste</h2>
-            <table>
-                <thead><th>Navn  </th><th>Længde  </th><th>Antal  </th><th>Beskrivelse  </th> <th>Pris </th> </thead>
+            <h1>Her er din stykliste</h1>
+            <table class="table table-hover table-bordered bg-#001276 text-white">
+                <thead>
+                <tr>
+                    <th scope="col">Navn</th>
+                    <th scope="col">Længde</th>
+                    <th scope="col">Antal</th>
+                    <th scope="col">Beskrivelse</th>
+                    <th scope="col">Pris</th>
+                </tr>
+                </thead>
+                <tbody>
                 <c:forEach var="BOMItem" items="${requestScope.BOMList}">
                     <tr>
                         <td>${BOMItem.name}</td>
@@ -51,14 +60,12 @@
                         <td>${BOMItem.description}</td>
                         <td>${BOMItem.price} kr.</td>
                     </tr>
-
                 </c:forEach>
+                </tbody>
             </table>
-
+            </table>
             <h2>Samlet pris:</h2>
             <h3>${requestScope.samletpris} kr.</h3>
-
         </c:if>
-
     </jsp:body>
 </t:genericpage>
