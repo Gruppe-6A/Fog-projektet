@@ -26,6 +26,11 @@
         <c:if test="${requestScope.status == 'godkendt' }">
             <h2>Betal for din carport</h2>
             <br/>
+            Længde: ${requestScope.order.length} <br/>
+            Højde: ${requestScope.order.height} <br/>
+            Bredde: ${requestScope.order.width} <br/>
+            Pris: ${requestScope.order.price}
+            <br/>
             <form action="${pageContext.request.contextPath}/fc/showorder">
                 <input type="hidden"
                        name="status"
@@ -37,18 +42,22 @@
         <c:if test="${requestScope.status == 'betalt' }">
             <h2>Her er din stykliste</h2>
             <table>
-                <thead><th>Navn  </th><th>Længde  </th><th>Antal  </th><th>Beskrivelse  </th></thead>
+                <thead><th>Navn  </th><th>Længde  </th><th>Antal  </th><th>Beskrivelse  </th> <th>Pris </th> </thead>
                 <c:forEach var="BOMItem" items="${requestScope.BOMList}">
                     <tr>
                         <td>${BOMItem.name}</td>
                         <td>${BOMItem.length}</td>
                         <td>${BOMItem.quantity}</td>
                         <td>${BOMItem.description}</td>
+                        <td>${BOMItem.price} kr.</td>
                     </tr>
 
                 </c:forEach>
-
             </table>
+
+            <h2>Samlet pris:</h2>
+            <h3>${requestScope.samletpris} kr.</h3>
+
         </c:if>
 
     </jsp:body>

@@ -30,10 +30,12 @@ public class ShowOrderCommand extends CommandProtectedPage{
         String status = orderFacade.getStatus(orderId);
         if (status.equals("godkendt")){
             request.setAttribute("status", "godkendt");
+            request.setAttribute("order", orderFacade.getOrder(orderId));
         }
         else if (status.equals("betalt")){
             request.setAttribute("status", "betalt");
             request.setAttribute("BOMList", itemMapper.getBOMEntries(orderId));
+            request.setAttribute("samletpris", orderFacade.getPrice(orderId));
         }
         else if (status.equals("forespørgelse")){
             request.setAttribute("status", "forespørgelse");

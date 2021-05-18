@@ -24,6 +24,10 @@ public class OrderFacade
 
     }
 
+    public Order getOrder(int id) throws UserException {
+        return orderMapper.getOrder(id);
+    }
+
     public List<Order> getOrders() throws UserException
     {
         return orderMapper.getOrders();

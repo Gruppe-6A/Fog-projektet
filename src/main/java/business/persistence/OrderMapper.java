@@ -75,6 +75,38 @@ public class OrderMapper
         }
     }
 
+    public Order getOrder(int id) throws UserException {
+
+        try (Connection connection = database.connect())
+        {
+            String sql = "SELECT * FROM fog.order WHERE order.id = ?";
+
+            try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS))
+            {
+                ps.setInt(1,id);
+                ResultSet res = ps.executeQuery();
+                    res.next();
+                    int user_id = res.getInt("users_id");
+                    int length = res.getInt("length");
+                    int height = res.getInt("height");
+                    int width = res.getInt("width");
+                    int price = res.getInt("price");
+                    String status = res.getString("status");
+
+                return new Order(user_id, length, height, width, price, status);
+
+            }
+            catch (SQLException ex)
+            {
+                throw new UserException(ex.getMessage());
+            }
+        }
+        catch (SQLException | UserException ex)
+        {
+            throw new UserException(ex.getMessage());
+        }
+    }
+
     public List<Order> getOrders() throws UserException {
         List<Order> orders = new ArrayList<Order>();
         try (Connection connection = database.connect())

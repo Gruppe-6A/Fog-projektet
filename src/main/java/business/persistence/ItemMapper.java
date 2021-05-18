@@ -74,7 +74,7 @@ public class ItemMapper {
         List<BOMEntry> items = new ArrayList<>();
         try (Connection connection = database.connect())
         {
-            String sql = "SELECT `m`.`name`, `om`.`length`, `om`.`quantity`, `om`.`description` from `materials` m join `ordered_materials` om on `om`.`materials_id` = `m`.`id` where `om`.`order_id` = ?;";
+            String sql = "SELECT `m`.`name`, `om`.`length`, `om`.`quantity`, `om`.`description`, `om`.`price` from `materials` m join `ordered_materials` om on `om`.`materials_id` = `m`.`id` where `om`.`order_id` = ?;";
 
             try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS))
             {
@@ -82,7 +82,7 @@ public class ItemMapper {
                 ResultSet res = ps.executeQuery();
 
                 while(res.next()){
-                    items.add(new BOMEntry(res.getString("name"), res.getInt("length"), res.getInt("quantity"), res.getString("description")));
+                    items.add(new BOMEntry(res.getString("name"), res.getInt("length"), res.getInt("quantity"), res.getString("description"), res.getInt("price")));
                 }
                 return items;
             }
