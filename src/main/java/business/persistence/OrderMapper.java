@@ -129,6 +129,56 @@ public class OrderMapper
         }
     }
 
+    public String getStatus(int orderId) throws UserException{
+        String status = null;
+        try (Connection connection = database.connect())
+        {
+            String sql = "SELECT status FROM `fog`.`order` where `order`.`id` = ?";
+
+            try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
+                ps.setInt(1, orderId);
+                ResultSet res = ps.executeQuery();
+                while (res.next()){
+                    status = res.getString("status");
+                }
+                return status;
+            }
+            catch (SQLException ex)
+            {
+                throw new UserException(ex.getMessage());
+            }
+        }
+        catch (SQLException | UserException ex)
+        {
+            throw new UserException(ex.getMessage());
+        }
+    }
+
+    public int getOrderId(int userId) throws UserException {
+        int orderId = 0;
+        try (Connection connection = database.connect())
+        {
+            String sql = "SELECT id FROM `fog`.`order` where `order`.`users_id` = ?";
+
+            try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
+                ps.setInt(1, userId);
+                ResultSet res = ps.executeQuery();
+                while (res.next()){
+                    orderId = res.getInt("id");
+                }
+                return orderId;
+            }
+            catch (SQLException ex)
+            {
+                throw new UserException(ex.getMessage());
+            }
+        }
+        catch (SQLException | UserException ex)
+        {
+            throw new UserException(ex.getMessage());
+        }
+    }
+
     public void removeOrder(int orderId) throws UserException {
         try (Connection connection = database.connect())
         {

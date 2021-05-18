@@ -1,11 +1,12 @@
 package business.persistence;
 
+import business.entities.BOMEntry;
 import business.entities.Item;
+import business.entities.Result;
 import business.exceptions.UserException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ItemMapper {
@@ -57,6 +58,33 @@ public class ItemMapper {
             {
                 ps.setInt(1, order_id);
                 ps.execute();
+            }
+            catch (SQLException ex)
+            {
+                throw new UserException(ex.getMessage());
+            }
+        }
+        catch (SQLException ex)
+        {
+            throw new UserException(ex.getMessage());
+        }
+    }
+
+    public List<BOMEntry> getBOMEntries(int orderId) throws UserException {
+        List<BOMEntry> items = new ArrayList<>();
+        try (Connection connection = database.connect())
+        {
+            String sql = "SELECT `m`.`name`, `om`.`length`, `om`.`quantity`, `om`.`description` from `materials` m join `ordered_materials` om on `om`.`materials_id` = `m`.`id` where `om`.`order_id` = ?;";
+
+            try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS))
+            {
+                ps.setInt(1, orderId);
+                ResultSet res = ps.executeQuery();
+
+                while(res.next()){
+                    items.add(new BOMEntry(res.getString("name"), res.getInt("length"), res.getInt("quantity"), res.getString("description")));
+                }
+                return items;
             }
             catch (SQLException ex)
             {

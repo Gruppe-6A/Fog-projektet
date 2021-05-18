@@ -32,6 +32,7 @@ public abstract class   Command
         commands.put("price", new ThePriceisRightCommand("price", "customer"));
         //commands.put("price", new ShowSVGCommand("price"));
         commands.put("Godkender", new GodkenderCommand("Godkender", "employee"));
+        commands.put("showorder", new ShowOrderCommand("showorder", "customer"));
     }
 
     public static Command fromPath(

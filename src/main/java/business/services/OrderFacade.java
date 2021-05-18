@@ -42,4 +42,12 @@ public class OrderFacade
         orderMapper.removeOrder(orderId);
     }
 
+    public String getStatus(int orderId) throws UserException {
+        return orderMapper.getStatus(orderId);
+    }
+
+    public int getOrderId(int userId) throws UserException{
+        return orderMapper.getOrderId(userId);
+    }
+
 }

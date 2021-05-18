@@ -36,9 +36,13 @@
         </c:if>
 
 
+        <c:if test="${sessionScope.role == 'employee' }">
+            <a class="p-2 text-white" href="${pageContext.request.contextPath}/fc/Godkender">Orders</a>
+        </c:if>
 
-        <a class="p-2 text-white" href="${pageContext.request.contextPath}/fc/Godkender">Orders</a>
-
+        <c:if test="${sessionScope.role == 'customer' }">
+            <a class="p-2 text-white" href="${pageContext.request.contextPath}/fc/showorder">Se din Ordre</a>
+        </c:if>
 
         <a class="p-2 text-white" href="#">Profile</a>
         <a class="p-2 text-white" href="#">About</a>
