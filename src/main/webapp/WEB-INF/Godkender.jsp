@@ -13,48 +13,55 @@
     </jsp:attribute>
 
     <jsp:body>
-            Her vises alle forespørgsler, hvis der er nogen
-
-        <table>
-            <thead><th>Id  </th><th>Kunde Id  </th><th>Længde  </th><th>Bredde  </th><th>godkend ordre  </th><th>afvis ordre</th></thead>
-        <c:forEach var="orderList" items="${requestScope.orderList}">
-            <c:if test="${orderList.status == 'forespørgelse' }">
-            <tr>
-                <td>${orderList.order_id}</td>
-                <td>${orderList.users_id}</td>
-                <td>${orderList.length}</td>
-                <td>${orderList.width}</td>
-
-                <td>
-                <form action="Godkender">
-                    <input type="hidden"
-                           name="orderid"
-                           value="${orderList.order_id}">
-                    <input type="hidden"
-                           name="godkendt"
-                           value="true">
-                    <button class="btn btn-primary" type="submit">Godkend ordre</button>
-                </form>
-                </td>
-
-                <td>
-                <form action="Godkender">
-                    <input type="hidden"
-                           name="orderid"
-                           value="${orderList.order_id}">
-                    <input type="hidden"
-                           name="godkendt"
-                           value="false">
-
-                    <button class="btn btn-primary" type="submit">Fjern ordre</button>
-                </form>
-                </td>
-            </tr>
-            </c:if>
-        </c:forEach>
-
         </table>
-
+        <h1>Her vises alle forespørglser</h1>
+        <table class="table table-bordered bg-#001276 text-white">
+            <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Kunde id</th>
+                <th scope="col">Længde</th>
+                <th scope="col">Bredde</th>
+                <th scope="col">Godkend ordre</th>
+                <th scope="col">Afvis ordre</th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach var="orderList" items="${requestScope.orderList}">
+                <c:if test="${orderList.status == 'forespørgelse' }">
+                <tr>
+                    <td class="col-sm-1">${orderList.order_id}</td>
+                    <td class="col-sm-1">${orderList.users_id}</td>
+                    <td class="col-sm-1">${orderList.length}</td>
+                    <td class="col-sm-1">${orderList.width}</td>
+                    <td class="col-sm-2">
+                        <form action="Godkender">
+                        <input type="hidden"
+                               name="orderid"
+                               value="${orderList.order_id}">
+                        <input type="hidden"
+                               name="godkendt"
+                               value="true">
+                        <button class="btn btn-success" type="submit">Godkend ordre</button>
+                    </form>
+                    </td>
+                    <td class="col-sm-2">
+                    <form action="Godkender">
+                        <input type="hidden"
+                               name="orderid"
+                               value="${orderList.order_id}">
+                        <input type="hidden"
+                               name="godkendt"
+                               value="false">
+                        <button class="btn btn-danger" type="submit">Fjern ordre</button>
+                    </form>
+                    </td>
+                </tr>
+                </c:if>
+            </c:forEach>
+            </tbody>
+        </table>
+        </table>
 
     </jsp:body>
 </t:genericpage>

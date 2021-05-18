@@ -12,7 +12,7 @@
         <c:set var="addHomeLink" value="${false}" scope="request"/>
     </jsp:attribute>
 
-    <jsp:body>
+    <jsp:body>-
         <div>
             <h1>Velkommen til about</h1>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse quis tincidunt tortor, a interdum diam. Donec accumsan, justo eu ultrices maximus, ligula nisl porta arcu, vitae maximus odio lorem blandit justo. Etiam mattis odio tortor, volutpat sagittis eros laoreet in. Nulla vitae congue nunc. Vivamus eget ultrices justo. Cras pellentesque mollis orci vel elementum. Donec suscipit fermentum velit non aliquet. Vestibulum et dapibus lorem. Quisque egestas diam in ante placerat, ac sodales mauris tempor. Curabitur non sodales diam. Mauris imperdiet ornare nulla a fermentum. Integer a mattis est. Nulla lobortis sapien et dolor interdum, nec tempus mauris bibendum.

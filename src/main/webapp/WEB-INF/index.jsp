@@ -22,18 +22,26 @@
             </div>
 
             <c:if test="${sessionScope.role == 'employee' }">
-                <p style="font-size: larger">This is what you can do,
-                    since your are logged in as an employee</p>
-                 <p><a href="fc/employeepage">Employee Page</a>
+                <form action="${pageContext.request.contextPath}/fc/Godkender" method="post" role="0">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <button class="btn btn-primary" type="submit">Admin side</button>
+                        </div>
+                    </div>
+                </form>
              </c:if>
 
-            <form action="${pageContext.request.contextPath}/fc/createorder" method="post" role="form">
-            <div class="row">
-                <div class="col-sm-4">
-                    <button class="btn btn-primary" type="submit">Skræddersy din egen carport</button>
+             <c:if test="${sessionScope.role == 'customer' }">
+            <form action="${pageContext.request.contextPath}/fc/createorder" method="post" role="1">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <button class="btn btn-primary" type="submit">Skræddersy din egen carport</button>
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
+                </c:if>
+
+
         </div>
 
     </jsp:body>
