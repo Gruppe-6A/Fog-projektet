@@ -66,6 +66,10 @@
             </table>
             <h2>Samlet pris:</h2>
             <h3>${requestScope.samletpris} kr.</h3>
+            <br/>
+            <div style="margin-top: 3em;margin-bottom: 3em;">
+                Klik her for at se din <a href="${pageContext.request.contextPath}/fc/showsvg">Carport tegning</a>
+            </div>
         </c:if>
     </jsp:body>
 </t:genericpage>

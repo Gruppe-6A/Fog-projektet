@@ -31,7 +31,7 @@ public abstract class   Command
         commands.put("employeepage", new CommandProtectedPage("employeepage", "employee"));
         commands.put("createorder", new CommandUnprotectedPage("createorder"));
         commands.put("price", new ThePriceisRightCommand("price", "customer"));
-        //commands.put("price", new ShowSVGCommand("price"));
+        commands.put("showsvg", new ShowSVGCommand("showsvg"));
         commands.put("Godkender", new GodkenderCommand("Godkender", "employee"));
         commands.put("showorder", new ShowOrderCommand("showorder", "customer"));
     }
