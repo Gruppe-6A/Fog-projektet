@@ -21,7 +21,7 @@ public class OrderMapper
     {
         try (Connection connection = database.connect())
         {
-            String sql = "INSERT INTO `fog`.`order`"+
+            String sql = "INSERT INTO `order`"+
                     "(users_id,length,height, width, price, date, status)"+
                     "VALUES (?,?,?,?,?,CURRENT_TIMESTAMP(), ?);";
 
@@ -54,7 +54,7 @@ public class OrderMapper
     public int getPrice(int id) throws UserException {
         try (Connection connection = database.connect())
         {
-            String sql = "SELECT price FROM fog.order WHERE id = ?";
+            String sql = "SELECT price FROM `order` WHERE id = ?";
 
             try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS))
             {
@@ -79,7 +79,7 @@ public class OrderMapper
 
         try (Connection connection = database.connect())
         {
-            String sql = "SELECT * FROM fog.order WHERE order.id = ?";
+            String sql = "SELECT * FROM `order` WHERE `order`.id = ?";
 
             try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS))
             {
@@ -111,7 +111,7 @@ public class OrderMapper
         List<Order> orders = new ArrayList<Order>();
         try (Connection connection = database.connect())
         {
-            String sql = "SELECT * FROM fog.order";
+            String sql = "SELECT * FROM `order`";
 
             try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS))
             {
@@ -143,7 +143,7 @@ public class OrderMapper
     public void changeStatus(String status, int orderId) throws UserException {
         try (Connection connection = database.connect())
         {
-            String sql = "UPDATE `fog`.`order` SET `order`.`status` = ? where id = ?";
+            String sql = "UPDATE `order` SET `order`.`status` = ? where id = ?";
 
             try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
                 ps.setString(1, status);
@@ -165,7 +165,7 @@ public class OrderMapper
         String status = null;
         try (Connection connection = database.connect())
         {
-            String sql = "SELECT status FROM `fog`.`order` where `order`.`id` = ?";
+            String sql = "SELECT status FROM `order` where `order`.`id` = ?";
 
             try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
                 ps.setInt(1, orderId);
@@ -190,7 +190,7 @@ public class OrderMapper
         int orderId = 0;
         try (Connection connection = database.connect())
         {
-            String sql = "SELECT id FROM `fog`.`order` where `order`.`users_id` = ?";
+            String sql = "SELECT id FROM `order` where `order`.`users_id` = ?";
 
             try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
                 ps.setInt(1, userId);
@@ -214,7 +214,7 @@ public class OrderMapper
     public void removeOrder(int orderId) throws UserException {
         try (Connection connection = database.connect())
         {
-            String sql = "DELETE FROM `fog`.`order` where `order`.`id` = ?";
+            String sql = "DELETE FROM `order` where `order`.`id` = ?";
 
             try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
                 ps.setInt(1, orderId);
