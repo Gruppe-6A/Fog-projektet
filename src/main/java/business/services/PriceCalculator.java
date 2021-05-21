@@ -9,12 +9,12 @@ public class PriceCalculator {
     int length;
     int amount;
     int material_id;
-    Database database = Command.database;
-
-    public PriceCalculator(int length, int amount, int material_id) {
+    private Database database;
+    public PriceCalculator(int length, int amount, int material_id, Database database) {
         this.length = length;
         this.amount = amount;
         this.material_id = material_id;
+        this.database = database;
     }
 
     public int calcPrice() throws UserException {
@@ -29,7 +29,7 @@ public class PriceCalculator {
                 String unit = resultSet.getString(1);
                 int price_per_unit = resultSet.getInt(2);
                 if (unit.equals("meter")) {
-                    price = (int) ((float) length / 100) * price_per_unit * amount;
+                    price = (int) (((float) length / 100.0) * (float)price_per_unit * (float)amount);
                 }
                 else if (unit.equals("stk"))
                 {

@@ -41,7 +41,7 @@ public class ThePriceisRightCommand extends CommandProtectedPage
         request.setAttribute("width", width);
 
         try {
-            List<Item> items = new CalcCarport(length, width).itemList();
+            List<Item> items = new CalcCarport(length, width, database).itemList();
             int price=0;
             for(Item item:items){
                 price+=item.getPrice();

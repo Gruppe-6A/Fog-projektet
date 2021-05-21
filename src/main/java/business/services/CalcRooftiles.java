@@ -13,9 +13,10 @@ public class CalcRooftiles {
     }
 
     public Result calculate(){
-        int rooftile_length = length;
-        int rooftile_count = (int) Math.ceil((float)width/100);
-
+        int rooftile_length = 600;
+        int rooftile_widthcount = (int) Math.ceil((float)width/100);
+        int rooftile_lengthcount = (int) Math.ceil((float)length/600);
+        int rooftile_count = rooftile_lengthcount * rooftile_widthcount;
         return new Result(rooftile_length, rooftile_count, materials_id);
     }
 }

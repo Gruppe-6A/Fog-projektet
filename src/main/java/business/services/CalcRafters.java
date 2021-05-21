@@ -14,7 +14,7 @@ public class CalcRafters {
 
     public Result calculate(){
         int rafter_length = width;
-        int rafter_count = (int) Math.ceil((float)width/55);
+        int rafter_count = (int) Math.ceil((float)length/55);
 
         return new Result(rafter_length, rafter_count, materials_id);
     }
