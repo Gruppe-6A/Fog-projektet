@@ -16,12 +16,21 @@
 
         <div>
             <h2>Velkommen til Fog</h2>
+            <c:if test="${sessionScope.role == null}">
 
-            <div style="margin-top: 3em;margin-bottom: 3em;">
-               Her kan du bygge din egen carport
-            </div>
+                Her kan du registrere dig som kunde for at bestille carporte.
+                <br>
+                <a type="button" class="btn btn-sm  btn-outline-light"
+                   href="${pageContext.request.contextPath}/fc/loginpage">Login</a>
+                <a type="button" class="btn btn-sm  btn-outline-light"
+                   href="${pageContext.request.contextPath}/fc/registerpage">Sign up</a>
+
+            </c:if>
 
             <c:if test="${sessionScope.role == 'employee' }">
+                <div style="margin-top: 3em;margin-bottom: 3em;">
+                    Her kan du gå ind på admin siden og godkende kunders forespørgsel.
+                </div>
                 <form action="${pageContext.request.contextPath}/fc/Godkender" method="post" role="0">
                     <div class="row">
                         <div class="col-sm-4">
@@ -32,6 +41,9 @@
              </c:if>
 
              <c:if test="${sessionScope.role == 'customer' }">
+                 <div style="margin-top: 3em;margin-bottom: 3em;">
+                     Her kan du bygge din egen carport.
+                 </div>
             <form action="${pageContext.request.contextPath}/fc/createorder" method="post" role="1">
                 <div class="row">
                     <div class="col-sm-4">
