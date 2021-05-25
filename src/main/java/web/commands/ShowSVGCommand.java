@@ -30,19 +30,27 @@ public class ShowSVGCommand extends CommandUnprotectedPage{
         SVG svg = new SVG(100, 0, "0 0 " + length + " " + width, length, width);
         svg.addRect(0, 35.0, 4.5, length);
         svg.addRect(0, width-39.5, 4.5, length);
-
         for (int x = 0; x < length/55 ; x++)
         {
             svg.addRect(0 + 55 * x, 0, length, 4.5);
         }
         svg.addRect(length-4.5, 0, width, 4.5);
 
-        for (int x = 0; x < Math.ceil((float)length/310); x++){
-            svg.addRect(length-10 - 310 * x, 32.4, 9.7, 9.7);
+        if (length<310){
+            svg.addRect(0, 32.4, 9.7, 9.7);
+            svg.addRect(length-10, 32.4, 9.7, 9.7);
+            svg.addRect(0, width-42.4, 9.7, 9.7);
+            svg.addRect(length-10, width-42.4, 9.7, 9.7);
         }
-        for (int x = 0; x < Math.ceil((float)length/310); x++){
-            svg.addRect(length-10 - 310 * x, width-42.1, 9.7, 9.7);
+        else{
+            for (int x = 0; x < Math.ceil((float)length/310); x++){
+                svg.addRect(length-10 - 310 * x, 32.4, 9.7, 9.7);
+            }
+            for (int x = 0; x < Math.ceil((float)length/310); x++){
+                svg.addRect(length-10 - 310 * x, width-42.1, 9.7, 9.7);
+            }
         }
+
 
         int xOffset = length/4;
         svg.addLine(xOffset,35 ,xOffset*2,width-70);

@@ -33,6 +33,12 @@ public class ThePriceisRightCommand extends CommandProtectedPage
 
         User user = (User) session.getAttribute("user");
         int id = user.getId();
+        String length1 = request.getParameter("length");
+        String width1 = request.getParameter("width");
+        if(length1 == "" || width1 == ""){
+            request.setAttribute("error", "Udfyld venligst alle felter");
+            return "createorder";
+        }
         int length = Integer.parseInt(request.getParameter("length"));
         int width = Integer.parseInt(request.getParameter("width"));
         int height = 225;

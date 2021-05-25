@@ -26,6 +26,11 @@
                 <br/>
                 <p>Alle carporte har en standard højde på 225 cm</p>
                 </c:if>
+                    <c:if test="${requestScope.error != null }">
+                <div class="row">
+                    <h2 class="text-danger">${requestScope.error}</h2>
+                </div>
+                    </c:if>
             </div>
 
             <form action="${pageContext.request.contextPath}/fc/price" method="post" role="form"
@@ -55,7 +60,7 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-4">
-                        <button class="btn btn-primary" type="submit">Send forespørgsel</button>
+                            <button class="btn btn-primary" type="submit">Send forespørgsel</button>
                     </div>
                 </div>
             </form>
