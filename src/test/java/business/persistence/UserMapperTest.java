@@ -35,13 +35,13 @@ public class UserMapperTest {
 
             // reset test database
             try ( Statement stmt = database.connect().createStatement() ) {
-                stmt.execute("drop table if exists users" );
+                stmt.execute("drop table if exists fog_test.users" );
                 stmt.execute("create table " + TESTDATABASE + ".users LIKE " + DATABASE + ".users;" );
                 stmt.execute(
                     "insert into users values " +
-                    "(1,'a@a.dk','l','customer'), " +
-                    "(2,'admin@fog.dk','l','employee'), " +
-                    "(4,'b@b.dk','l','customer')");
+                    "(1,'a@a.dk','l',0), " +
+                    "(2,'admin@fog.dk','l',1), " +
+                    "(4,'b@b.dk','l',0)");
             } catch (SQLException ex) {
             System.out.println( "Could not open connection to database: " + ex.getMessage() );
         }
@@ -71,7 +71,7 @@ public class UserMapperTest {
     @Test
     public void testLogin03() throws UserException {
         // Jens is supposed to be a customer
-        User user = userMapper.login( "jens@somewhere.com", "jensen" );
+        User user = userMapper.login( "a@a.dk", "l" );
         assertEquals( "customer", user.getRole() );
     }
 
