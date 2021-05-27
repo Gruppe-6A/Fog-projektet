@@ -2,9 +2,6 @@ package business.services;
 
 import business.exceptions.UserException;
 import business.persistence.Database;
-import business.persistence.ItemMapper;
-import business.persistence.OrderMapper;
-import business.persistence.UserMapper;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,7 +25,7 @@ class PriceCalculatorTest {
     public static void setUpClass() {
         try {
             database = new Database(USER, PASSWORD, URL);
-            priceCalculator = new PriceCalculator(1000, 3, 1, database);
+            priceCalculator = new PriceCalculator(database);
         } catch (ClassNotFoundException e) {   // kan ikke finde driveren i database klassen
             fail("Database connection failed. Missing jdbc driver");
         }
@@ -56,7 +53,7 @@ class PriceCalculatorTest {
 
     @Test
     void calcPrice() throws UserException {
-        int price = priceCalculator.calcPrice();
+        int price = priceCalculator.calcPrice(1000, 3, 1);
         assertEquals(1230, price);
     }
 }

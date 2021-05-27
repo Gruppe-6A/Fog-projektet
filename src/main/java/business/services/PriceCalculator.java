@@ -1,33 +1,26 @@
 package business.services;
 
+import business.entities.Materials;
 import business.exceptions.UserException;
 import business.persistence.Database;
-import web.commands.Command;
-import java.sql.*;
+import business.persistence.MaterialMapper;
+
 
 public class PriceCalculator {
-    int length;
-    int amount;
-    int material_id;
+    private MaterialMapper materialMapper;
     private Database database;
-    public PriceCalculator(int length, int amount, int material_id, Database database) {
-        this.length = length;
-        this.amount = amount;
-        this.material_id = material_id;
+    public PriceCalculator(Database database) {
         this.database = database;
+        materialMapper = new MaterialMapper(database);
     }
 
-    public int calcPrice() throws UserException {
+    public int calcPrice(int length, int amount, int material_id) throws UserException {
         int price = 0;
-        try (Connection connection = database.connect()) {
-            String sql = "select unit, price_per_unit from materials where id = ?";
-
-            try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-                ps.setInt(1, material_id);
-                ResultSet resultSet = ps.executeQuery();
-                resultSet.next();
-                String unit = resultSet.getString(1);
-                int price_per_unit = resultSet.getInt(2);
+        materialMapper =  new MaterialMapper(database);
+        try {
+            Materials material = materialMapper.getMaterial(material_id);
+                String unit = material.getUnit();
+                int price_per_unit = material.getPrice_per_unit();
                 if (unit.equals("meter")) {
                     price = (int) (((float) length / 100.0) * (float)price_per_unit * (float)amount);
                 }
@@ -35,12 +28,9 @@ public class PriceCalculator {
                 {
                     price = price_per_unit * amount;
                 }
-
                 return price;
-            } catch (SQLException ex) {
-                throw new UserException(ex.getMessage());
-            }
-        } catch (SQLException ex) {
+
+        } catch (UserException ex) {
             throw new UserException(ex.getMessage());
         }
     }
