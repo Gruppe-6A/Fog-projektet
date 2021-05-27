@@ -16,13 +16,12 @@ public class PriceCalculator {
 
     public int calcPrice(int length, int amount, int material_id) throws UserException {
         int price = 0;
-        materialMapper =  new MaterialMapper(database);
         try {
             Materials material = materialMapper.getMaterial(material_id);
                 String unit = material.getUnit();
                 int price_per_unit = material.getPrice_per_unit();
                 if (unit.equals("meter")) {
-                    price = (int) (((float) length / 100.0) * (float)price_per_unit * (float)amount);
+                    price = (int) (((float)length / 100.0) * (float)price_per_unit * (float)amount);
                 }
                 else if (unit.equals("stk"))
                 {
